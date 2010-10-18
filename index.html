@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Test</title>
-  </head>
+---
+layout: default
+title: Test
+---
 
-  <body>
-    <h1>Testing...</h1>
-    1.. 2.. 3..
-  </body>
-</html>
+{% for post in site.posts limit:5 %}
+    <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+        {{ post.content }}
+    <em>Posted on {{ post.date | date_to_long_string }}.</em>
+{% endfor %}
+
+

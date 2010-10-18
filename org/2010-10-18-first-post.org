@@ -1,0 +1,11 @@
+#+BEGIN_HTML
+---
+layout: default
+title: My First Blog Post
+categories:
+- misc
+---
+#+END_HTML
+
+* First post!
+This is my first post, I'll mostly post my ramblings or whatever else seems attractive at the time.
