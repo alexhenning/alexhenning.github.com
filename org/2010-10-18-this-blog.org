@@ -1,7 +1,7 @@
 #+BEGIN_HTML
 ---
 layout: default
-title: This blog
+title: Technology behind this blog
 categories:
 - jekyll
 - org-mode
