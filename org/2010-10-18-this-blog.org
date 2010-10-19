@@ -31,17 +31,15 @@ Jekyll statically generates sites from templates. Jekyll takes files from multip
 When you run jekyll from the main directory, it will produce a directory called =_site=, you can use this for testing. However, github auto-runs jekyll when you push the repository, so you only need to this to preview/debug your site. (It also gives you the freedom to move away from github)
 
 When you write a file in a markdown language, you can include a special header at the top of the file:
-#BEGIN_EXAMPLE
----
-layout: layoutName
-title: Some title
-categories:
-- tag1
-- tag2
-...
-- tagn
----
-#+END_EXAMPLE
+: ---
+: layout: layoutName
+: title: Some title
+: categories:
+: - tag1
+: - tag2
+: ...
+: - tagn
+: ---
 The file is rendered as HTML and placed in place of {{ content }} in the layout file.
 See more at: [[http://blog.envylabs.com/2009/08/publishing-a-blog-with-github-pages-and-jekyll/][Envy Labs]]
 
@@ -65,19 +63,17 @@ The last key piece to this blog is org-mode. Using org-mode allows me to write t
       )))
 #+END_SRC
 And place the following at the beginning of each post. (I have it as a snippet with YASnippet)
-#BEGIN_EXAMPLE
-#+BEGIN_HTML
----
-layout: layoutName
-title: Some title
-categories:
-- tag1
-- tag2
-...
-- tagn
----
-#+END_HTML
-#+END_EXAMPLE
+: #+BEGIN_HTML
+: ---
+: layout: layoutName
+: title: Some title
+: categories:
+: - tag1
+: - tag2
+: ...
+: - tagn
+: ---
+: #+END_HTML
 (See: [[http://orgmode.org/worg/org-tutorials/org-jekyll.php][org-jekyll]])
 
 * Conclusion

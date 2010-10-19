@@ -52,24 +52,21 @@ Site
 </p>
 <p>
 When you write a file in a markdown language, you can include a special header at the top of the file:
+</p><pre class="example">
 ---
 layout: layoutName
 title: Some title
 categories:
-</p><ul>
-<li>
-tag1
-</li>
-<li>
-tag2
-&hellip;
-</li>
-<li>
-tagn
+- tag1
+- tag2
+...
+- tagn
 ---
-The file is rendered as HTML and placed in place of {{ content }} in the layout file.
-See more at: <a href="http://blog.envylabs.com/2009/08/publishing-a-blog-with-github-pages-and-jekyll/">Envy Labs</a>
+</pre>
 
+<p>The file is rendered as HTML and placed in place of {{ content }} in the layout file.
+See more at: <a href="http://blog.envylabs.com/2009/08/publishing-a-blog-with-github-pages-and-jekyll/">Envy Labs</a>
+</p>
 </div>
 
 </div>
@@ -102,6 +99,8 @@ See more at: <a href="http://blog.envylabs.com/2009/08/publishing-a-blog-with-gi
 
 <p>
 And place the following at the beginning of each post. (I have it as a snippet with YASnippet)
+</p><pre class="example">
+#+BEGIN_HTML
 ---
 layout: layoutName
 title: Some title
@@ -111,7 +110,10 @@ categories:
 ...
 - tagn
 ---
-(See: <a href="http://orgmode.org/worg/org-tutorials/org-jekyll.php">org-jekyll</a>)
+#+END_HTML
+</pre>
+
+<p>(See: <a href="http://orgmode.org/worg/org-tutorials/org-jekyll.php">org-jekyll</a>)
 </p>
 </div>
 
@@ -134,8 +136,6 @@ Pretty source code highlighting
 </li>
 <li>
 And more!
-</li>
-</ul>
 </li>
 </ul>
 
