@@ -1,0 +1,143 @@
+---
+layout: default
+title: Technology behind this blog
+categories:
+- jekyll
+- org-mode
+- github
+- blogging
+---
+
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">Introduction </h2>
+<div class="outline-text-2" id="text-1">
+
+<p>Since I just put this blog up, I figured I'd document the technology behind it before I forget. It uses a few key pieces of technology. <a href="http://pages.github.com/">Github pages</a> for hosting. <a href="http://github.com/mojombo/jekyll">Jekyll</a> for static site generation. <a href="http://orgmode.org/">Emacs org-mode</a> for rich markup and export to html.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">Github pages </h2>
+<div class="outline-text-2" id="text-2">
+
+<p>Assuming you already have a github account: 
+</p>
+<p>
+Create a repository called <code>username.github.com</code>. In my case, this was <code>alexhenning.github.com</code>. Create and index.html as your main page. You can link to any other pages in the repository, <code>username.github.com</code> is your root directory. Commit and push it to github. It claims it takes 10 minutes the first time, but for me it wasn't done after a full hour. However, it was done after I came back three hours later, so, just give it time. When you're done, you should see your index page, congrats. (Largely taken from <a href="http://blog.envylabs.com/2009/08/publishing-a-blog-with-github-pages-and-jekyll/">Envy Labs</a>)
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">Jekyll </h2>
+<div class="outline-text-2" id="text-3">
+
+<p>Jekyll statically generates sites from templates. Jekyll takes files from multiple markdown syntaxes and converts them to HTML files fitting the content into a template. It also has some blogging support. anything in the <code>_posts</code> directory automatically gets treated as a blog post. However, for it to work properly the file name must be in the format <code>year-month-day-some-title.markdown</code>. The directory structure should look something like:
+</p><pre class="example">
+Site
+| index.html
+| _posts
+  | year-month-day-some-title.markdown
+  | year-month-day-some-title.markdown
+  | year-month-day-some-title.markdown
+| _layouts
+  | default.html
+</pre>
+
+<p>When you run jekyll from the main directory, it will produce a directory called <code>_site</code>, you can use this for testing. However, github auto-runs jekyll when you push the repository, so you only need to this to preview/debug your site. (It also gives you the freedom to move away from github)
+</p>
+<p>
+When you write a file in a markdown language, you can include a special header at the top of the file:
+---
+layout: layoutName
+title: Some title
+categories:
+</p><ul>
+<li>
+tag1
+</li>
+<li>
+tag2
+&hellip;
+</li>
+<li>
+tagn
+---
+The file is rendered as HTML and placed in place of {{ content }} in the layout file.
+See more at: <a href="http://blog.envylabs.com/2009/08/publishing-a-blog-with-github-pages-and-jekyll/">Envy Labs</a>
+
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4">Org-mode </h2>
+<div class="outline-text-2" id="text-4">
+
+<p>The last key piece to this blog is org-mode. Using org-mode allows me to write this blog in my favorite text editor <b>EMACS</b> and use the amazing org-mode syntax. If you know org-mode, there's not much special going on. I just added a project to org-mode called blog:
+</p>
+
+
+<pre class="src src-elisp"><span class="linenr"> 1:  </span>(setq org-publish-project-alist
+<span class="linenr"> 2:  </span>      '(
+<span class="linenr"> 3:  </span>        (<span style="color: #ad7fa8; font-style: italic;">"blog"</span>
+<span class="linenr"> 4:  </span>         <span style="color: #888a85;">;; </span><span style="color: #888a85;">Path to your org files.
+<span class="linenr"> 5:  </span></span>         <span style="color: #729fcf;">:base-directory</span> <span style="color: #ad7fa8; font-style: italic;">"~/Dropbox/blog/org"</span>
+<span class="linenr"> 6:  </span>         <span style="color: #729fcf;">:base-extension</span> <span style="color: #ad7fa8; font-style: italic;">"org"</span>
+<span class="linenr"> 7:  </span>
+<span class="linenr"> 8:  </span>         <span style="color: #888a85;">;; </span><span style="color: #888a85;">Path to your Jekyll project.
+<span class="linenr"> 9:  </span></span>         <span style="color: #729fcf;">:publishing-directory</span> <span style="color: #ad7fa8; font-style: italic;">"~/Dropbox/blog/_posts"</span>
+<span class="linenr">10:  </span>         <span style="color: #729fcf;">:recursive</span> t
+<span class="linenr">11:  </span>         <span style="color: #729fcf;">:publishing-function</span> org-publish-org-to-html
+<span class="linenr">12:  </span>         <span style="color: #729fcf;">:headline-levels</span> 4 
+<span class="linenr">13:  </span>         <span style="color: #729fcf;">:html-extension</span> <span style="color: #ad7fa8; font-style: italic;">"html"</span>
+<span class="linenr">14:  </span>         <span style="color: #729fcf;">:body-only</span> t <span style="color: #888a85;">;; </span><span style="color: #888a85;">Only export section between &lt;body&gt; &lt;/body&gt;
+<span class="linenr">15:  </span></span>    )))
+</pre>
+
+
+<p>
+And place the following at the beginning of each post. (I have it as a snippet with YASnippet)
+---
+layout: layoutName
+title: Some title
+categories:
+- tag1
+- tag2
+...
+- tagn
+---
+(See: <a href="http://orgmode.org/worg/org-tutorials/org-jekyll.php">org-jekyll</a>)
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5">Conclusion </h2>
+<div class="outline-text-2" id="text-5">
+
+<p>That's the base of my blog, I'll go into more detail on other components at some later point. Some topics include:
+</p><ul>
+<li>
+Setting up an atom feed
+</li>
+<li>
+Making it look pretty with CSS
+</li>
+<li>
+Pretty source code highlighting
+</li>
+<li>
+And more!
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
