@@ -11,7 +11,7 @@ categories:
 #+END_HTML
 
 * Introduction
-Since I just put this blog up, I figured I'd document the technology behind it before I forget. It uses a few key pieces of technology. [[http://pages.github.com/][Github pages]] for hosting. [[http://github.com/mojombo/jekyll][Jekyll]] for static site generation. [[http://orgmode.org/][Emacs org-mode]] for rich markup and export to html.
+Since I just put this blog up, I figured I'd document the core technology behind it before I forget. It uses three primary pieces of technology. [[http://pages.github.com/][Github pages]] for hosting. [[http://github.com/mojombo/jekyll][Jekyll]] for static site generation. [[http://orgmode.org/][Emacs org-mode]] for rich markup and export to html.
 
 * Github pages
 Assuming you already have a github account: 

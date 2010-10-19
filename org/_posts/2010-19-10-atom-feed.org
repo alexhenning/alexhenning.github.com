@@ -1,0 +1,48 @@
+#+BEGIN_HTML
+---
+layout: default
+title: Setting up an atom feed
+categories:
+- blogging
+- atom
+- jekyll
+- RSS
+---
+#+END_HTML
+
+** Setting up an RSS feed
+Once you've set up a blog, you might want to set up an RSS feed. And if you don't, well then, too bad! Setting up an RSS feed is quite simple with jekyll. First create a file called =atom.xml=.
+: > touch atom.xml
+
+Next, just copy the following into =atom.xml=, changing username, email and the site to fit your site
+#+BEGIN_SRC xml -n -r
+  ---
+  layout: nil
+  ---
+  <?xml version="1.0" encoding="utf-8"?>
+  <feed xmlns="http://www.w3.org/2005/Atom">
+   
+   <title>Alex Henning</title>
+   <link href="http://alexhenning.github.com/atom.xml" rel="self"/>
+   <link href="http://alexhenning.github.com/"/>
+   <updated>{{ site.time | date_to_xmlschema }}</updated>
+   <id>http://alexhenning.github.com/</id>
+   <author>
+     <name>Alex Henning</name>
+     <email>your@email.com</email>
+   </author>
+  
+   {% for post in site.posts limit:25 %} (ref:begin-loop)
+   <entry>
+     <title>{{ post.title }}</title>
+     <link href="http://alexhenning.github.com{{ post.url }}"/>
+     <updated>{{ post.date | date_to_xmlschema }}</updated>
+     <id>http://alexhenning.github.com{{ post.id }}</id>
+     <content type="html">{{ post.content | xml_escape }}</content>
+   </entry>
+   {% endfor %} (ref:end-loop)
+   
+  </feed>
+#+END_SRC
+
+It's a pretty plain file, mostly just saying that it's an atom feed. However, from [[(begin-loop)][line (begin-loop)]] to [[(end-loop)][line (end-loop)]], jekyll runs a loop that creates an atom <entry> for the last 25 posts posted. You can remove =limit:25= to show all posts ever, but that would become obnoxious after you got a large number of posts. Just pick a number that seems reasonable and go with it.
