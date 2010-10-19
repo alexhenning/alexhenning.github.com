@@ -1,6 +1,6 @@
 #+BEGIN_HTML
 ---
-layout: default
+layout: post
 title: My First Blog Post
 categories:
 - misc

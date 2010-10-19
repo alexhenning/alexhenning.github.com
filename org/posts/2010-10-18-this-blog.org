@@ -1,6 +1,6 @@
 #+BEGIN_HTML
 ---
-layout: default
+layout: post
 title: Technology behind this blog
 categories:
 - jekyll

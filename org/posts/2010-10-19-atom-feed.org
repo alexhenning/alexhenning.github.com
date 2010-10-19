@@ -1,6 +1,6 @@
 #+BEGIN_HTML
 ---
-layout: default
+layout: post
 title: Setting up an atom feed
 categories:
 - blogging

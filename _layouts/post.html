@@ -1,0 +1,11 @@
+---
+layout: default
+---
+
+{{ content }}
+
+<em>Posted on {{ page.date | date_to_long_string }} in{% for category in  page.categories %} {{ category }}{% endfor %}</em>
+<br/>
+<br/>
+{% if page.previous %} <a href={{ page.previous.url }}>&lt;Previous: {{ page.previous.title }}</a> {% endif %} &mdash; {% if page.next %} <a href={{ page.next.url }}>Next: {{ page.next.title }}&gt;</a> {% endif %}
+<br/><br/>
