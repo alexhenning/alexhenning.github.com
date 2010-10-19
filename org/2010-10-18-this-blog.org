@@ -1,0 +1,88 @@
+#+BEGIN_HTML
+---
+layout: default
+title: This blog
+categories:
+- jekyll
+- org-mode
+- github
+- blogging
+---
+#+END_HTML
+
+* Introduction
+Since I just put this blog up, I figured I'd document the technology behind it before I forget. It uses a few key pieces of technology. [[http://pages.github.com/][Github pages]] for hosting. [[http://github.com/mojombo/jekyll][Jekyll]] for static site generation. [[http://orgmode.org/][Emacs org-mode]] for rich markup and export to html.
+
+* Github pages
+Assuming you already have a github account: 
+
+Create a repository called =username.github.com=. In my case, this was =alexhenning.github.com=. Create and index.html as your main page. You can link to any other pages in the repository, =username.github.com= is your root directory. Commit and push it to github. It claims it takes 10 minutes the first time, but for me it wasn't done after a full hour. However, it was done after I came back three hours later, so, just give it time. When you're done, you should see your index page, congrats. (Largely taken from [[http://blog.envylabs.com/2009/08/publishing-a-blog-with-github-pages-and-jekyll/][Envy Labs]])
+
+* Jekyll
+Jekyll statically generates sites from templates. Jekyll takes files from multiple markdown syntaxes and converts them to HTML files fitting the content into a template. It also has some blogging support. anything in the =_posts= directory automatically gets treated as a blog post. However, for it to work properly the file name must be in the format =year-month-day-some-title.markdown=. The directory structure should look something like:
+: Site
+: | index.html
+: | _posts
+:   | year-month-day-some-title.markdown
+:   | year-month-day-some-title.markdown
+:   | year-month-day-some-title.markdown
+: | _layouts
+:   | default.html
+When you run jekyll from the main directory, it will produce a directory called =_site=, you can use this for testing. However, github auto-runs jekyll when you push the repository, so you only need to this to preview/debug your site. (It also gives you the freedom to move away from github)
+
+When you write a file in a markdown language, you can include a special header at the top of the file:
+#BEGIN_EXAMPLE
+---
+layout: layoutName
+title: Some title
+categories:
+- tag1
+- tag2
+...
+- tagn
+---
+#+END_EXAMPLE
+The file is rendered as HTML and placed in place of {{ content }} in the layout file.
+See more at: [[http://blog.envylabs.com/2009/08/publishing-a-blog-with-github-pages-and-jekyll/][Envy Labs]]
+
+* Org-mode
+The last key piece to this blog is org-mode. Using org-mode allows me to write this blog in my favorite text editor *EMACS* and use the amazing org-mode syntax. If you know org-mode, there's not much special going on. I just added a project to org-mode called blog:
+#+BEGIN_SRC elisp -n -r
+  (setq org-publish-project-alist
+        '(
+          ("blog"
+           ;; Path to your org files.
+           :base-directory "~/Dropbox/blog/org"
+           :base-extension "org"
+  
+           ;; Path to your Jekyll project.
+           :publishing-directory "~/Dropbox/blog/_posts"
+           :recursive t
+           :publishing-function org-publish-org-to-html
+           :headline-levels 4 
+           :html-extension "html"
+           :body-only t ;; Only export section between <body> </body>
+      )))
+#+END_SRC
+And place the following at the beginning of each post. (I have it as a snippet with YASnippet)
+#BEGIN_EXAMPLE
+#+BEGIN_HTML
+---
+layout: layoutName
+title: Some title
+categories:
+- tag1
+- tag2
+...
+- tagn
+---
+#+END_HTML
+#+END_EXAMPLE
+(See: [[http://orgmode.org/worg/org-tutorials/org-jekyll.php][org-jekyll]])
+
+* Conclusion
+That's the base of my blog, I'll go into more detail on other components at some later point. Some topics include:
+ - Setting up an atom feed
+ - Making it look pretty with CSS
+ - Pretty source code highlighting
+ - And more!
