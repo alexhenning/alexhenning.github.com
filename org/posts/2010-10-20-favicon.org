@@ -14,5 +14,6 @@ I made a cute little lambda:
 #+BEGIN_HTML
 <img src="/favicon.ico" />
 #+END_HTML
+.
 
 That's all for now, hopefully within the next week, I'll have everything setup and start blogging about my projects!
