@@ -1,0 +1,14 @@
+#+BEGIN_HTML
+---
+layout: post
+title: Disqus Comments
+categories:
+- blogging
+- disqus
+- comments
+---
+#+END_HTML
+
+I just added [[http://disqus.com/overview/][disqus]] comments to the blog. Disqus allows me to embed a little bit of javascript into the page and then =poof= comments are magically embedded in the page. The site is still statically generated, disqus handles all of the dynamic comments for me.
+
+Scroll down and try them out!
