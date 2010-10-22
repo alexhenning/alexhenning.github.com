@@ -1,0 +1,16 @@
+#+BEGIN_HTML
+---
+layout: post
+title: Why I Have Two Chargers For My Laptop
+categories:
+- laptop
+- computing
+- convenience
+---
+#+END_HTML
+
+*Short answer:* because I found a second one lying around that was compatible with my laptop.
+
+*Long answer:* However, I plan on buying a second one with future laptops I buy if I don't already have a second compatible charger, because I've found it so convenient. *Why?* Having a laptop charger always plugged in where I use my laptop the most means I don't have to worry about unplugging it and packing it when I go somewhere. And when I come back, I just pull out my laptop and the plug is there, ready for me.
+
+To some, this might sound like premature optimization, but it's not. It's laziness! I'm lazy, the cost of an extra charger is minimal (in this case free), but it reduces the overhead of me using my computer. Less steps between me using my computer is better.
