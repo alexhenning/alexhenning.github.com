@@ -1,0 +1,11 @@
+#+BEGIN_HTML
+---
+layout: post
+title: Why I Have Two Chargers For My Laptop
+categories:
+- laptop
+- computing
+- convenience
+---
+#+END_HTML
+
