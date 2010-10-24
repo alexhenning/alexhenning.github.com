@@ -1,0 +1,88 @@
+#+BEGIN_HTML
+---
+layout: post
+title: My Blogging Work-flow
+categories:
+- org-mode
+- emacs
+- blogging
+- elisp
+---
+#+END_HTML
+
+I've been blogging for less than a week. So far, I have the workings of a simple work-flow for blogging. Below, I've documented the basics.
+
+*** Settings
+The directories of the blog.
+#+BEGIN_SRC elisp -n -r :tangle emacs.el
+  (setq
+   blog-directory "~/Dropbox/blog/"
+   blog-posts-directory (concat blog-directory "_posts/")
+   blog-base-directory (concat blog-directory "org/posts/")
+   blog-draft-directory (concat blog-directory "draft/"))
+#+END_SRC
+
+*** Publishing
+This allows me publish my entire blog with =C-c C-e X blog=. It exports any changed files from the =blog-base-directory= into =blog-posts-directory=. It should be unnecessary to change any of the below, as long as you modify your settings properly.
+#+BEGIN_SRC elisp -n -r :tangle emacs.el
+  (setq org-publish-project-alist
+        `(
+          ("blog"
+           ;; Path to your org files.
+           :base-directory ,blog-base-directory
+           :base-extension "org"
+  
+           ;; Path to your Jekyll project.
+           :publishing-directory ,blog-posts-directory
+           :recursive t
+           :publishing-function org-publish-org-to-html
+           :headline-levels 4 
+           :html-extension "html"
+           :body-only t ;; Only export section between <body> </body>
+      )))
+#+END_SRC
+
+*** Blog-publish
+=C-c C-e X blog= is nice, but it involves being in org mode and does strain the pinky a little. However, =M-x blog-publish= would be more convenient, and able to be run from any buffer.
+#+BEGIN_SRC elisp -n -r :tangle emacs.el
+  (defun blog-publish ()
+    (interactive)
+    (org-publish-project "blog"))
+#+END_SRC
+
+*** Blog-draft
+Next, I want to be able to draft a post easily without publishing it, just as a preliminary draft. The following function allows me to easily do this with =M-x blog-draft some-filename=.
+#+BEGIN_SRC elisp -n -r :tangle emacs.el
+  (defun blog-draft ()
+    (interactive)
+    (let* ((result (read-from-minibuffer "File: " nil ))
+           (buffer (generate-new-buffer (concat blog-draft-directory result ".org"))))
+      (set-buffer buffer)
+      (set-visited-file-name (buffer-name buffer))
+      (switch-to-buffer buffer)))
+#+END_SRC
+
+*** Blog-post
+I would also like to be able to effortlessly post a draft when I am ready without having to remember jekyll's naming convention. =M-x blog-post= will do that.
+#+BEGIN_SRC elisp -n -r :tangle emacs.el
+  (defun blog-post ()
+    (interactive)
+    (save-buffer)
+    (let* ((date (calendar-current-date))
+           (filebase (car (last (split-string
+                       (buffer-file-name (current-buffer)) "/"))))
+           (filename (format "%s-%s-%s-%s" (caddr date) (car date)
+                         (cadr date) filebase))
+           (filepath (concat blog-base-directory filename)))
+      (message filepath)
+      (shell-command (format "mv %s %s"
+                             (buffer-file-name (current-buffer))
+                             filepath))
+      (set-visited-file-name (buffer-name (current-buffer)))
+      (blog-publish)))
+#+END_SRC
+
+** Conclusion
+Using these commands, I can easily maintain my blog with emacs, draft posts and publish them. After I've played around with my work-flow a bit more, I'll try to make it into an easy download. 
+
+*Any suggestions?*
