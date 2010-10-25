@@ -1,0 +1,13 @@
+#+BEGIN_HTML
+---
+layout: post
+title: The Value of Instant On
+categories:
+- ramblings
+---
+#+END_HTML
+
+When the ipad first came out, people were going on about how amazing it was; how it turned on instantly and was an appliance. Then a few months later, google came out with instant search. I thought it was a tad ridiculous and pointless, however, people 
+- Ipad...
+- Google instant...
+- Ubuntu...
