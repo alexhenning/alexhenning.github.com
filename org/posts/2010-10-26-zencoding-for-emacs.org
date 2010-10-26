@@ -1,0 +1,52 @@
+#+BEGIN_HTML
+---
+layout: post
+title: ZenCoding for Emacs
+categories:
+- emacs
+- zencoding
+---
+#+END_HTML
+
+[[http://www.emacswiki.org/emacs/ZenCoding][=ZenCoding=]] allows extremely easy html generation by typing shortcut text. With it:
+: html>(head>body>title)+(div#main>h1+div#content)+(div#sidebar>ul>li*5)
+Becomes
+#+BEGIN_SRC html -n -r
+  <html>
+    <head>
+      <body>
+        <title>
+        </title>
+      </body>
+    </head>
+    <div id="main">
+      <h1></h1>
+      <div id="content">
+      </div>
+    </div>
+    <div id="sidebar">
+      <ul>
+        <li>
+        </li>
+        <li>
+        </li>
+        <li>
+        </li>
+        <li>
+        </li>
+        <li>
+        </li>
+      </ul>
+    </div>
+  </html>  
+#+END_SRC
+
+You can use it alongside =YASnippet= to make html actually... fun to write. Between the two of the, you can ignore most of the cruft of html.
+
+If you want to use it, get it from [[http://github.com/chrisdone/zencoding][github]] and load it in your .emacs:
+#+BEGIN_SRC elisp -n -r :tangle emacs.el
+  (add-to-list 'load-path "~/.emacs.d/zencoding/")
+  (require 'zencoding-mode)
+  (add-hook 'sgml-mode-hook 'zencoding-mode)
+#+END_SRC
+And type =C-<RET> <RET>= to expand the zencode line.
