@@ -1,0 +1,13 @@
+
+* Robotics
+
+* Blogging
+- Setting up blog-ideas.org
+
+* Programming
+
+** Emacs
+- Pretty lamdas
+
+* Misc
+- MIT application
