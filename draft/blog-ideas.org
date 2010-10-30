@@ -1,13 +1,14 @@
 
 * Robotics
 
-* Blogging
-- Setting up blog-ideas.org
+* Blogging [0/1]
+- [ ] Setting up blog-ideas.org
 
 * Programming
 
-** Emacs
-- Pretty lamdas
+** Emacs [0/1]
+- [ ] Pretty lamdas
 
-* Misc
-- MIT application
+* Misc [1/2]
+- [X] MIT application
+- [ ] motivational message / wisdom

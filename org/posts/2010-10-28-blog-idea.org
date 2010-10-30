@@ -1,0 +1,32 @@
+#+BEGIN_HTML
+---
+layout: post
+title: Keeping Track of Ideas for Blog Posts
+categories:
+- blogging
+- workflow
+---
+#+END_HTML
+
+So, I've been having some good ideas for blog posts. So many that, rather than post about them, I'm writing a post about how I improved my workflow! So, what improvement have I made? I can now type =M-x blog-idea idea= and it will save the idea to a file. This is somewhat influenced by org-remember, however, it separates my blog ideas from the rest of the nonsense.
+
+First I created =blog/draft/blog-ideas.org= since I wanted to keep track of my files with org-mode. I separated my initial ideas by topic with the last topic being =misc=. Then I went about implementing some elisp for =M-x blog-idea= so that it prompted me for the idea and then appended it to the end of the ideas file.
+#+BEGIN_SRC elisp -n -r
+  (defun blog-idea ()
+    (interactive)
+    (let* ((idea (read-from-minibuffer "Idea: " nil))
+           (line (concat "- [ ] " idea "\n")))
+      (with-temp-buffer
+        (insert line)
+        (append-to-file  (point-min) (point-max)
+                         "~/Dropbox/blog/draft/blog-ideas.org"))))
+#+END_SRC
+
+Then, I made =M-x blog-ideas= a shortcut for opening =blog-ideas.org=, which is short and sweet:
+#+BEGIN_SRC elisp -n -r :tangle emacs.el
+(defun blog-ideas ()
+  (interactive)
+  (find-file "~/Dropbox/blog/draft/blog-ideas.org"))
+#+END_SRC
+
+This is why I love *EMACS*!

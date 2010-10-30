@@ -1,0 +1,43 @@
+---
+layout: post
+title: Keeping Track of Ideas for Blog Posts
+categories:
+- blogging
+- workflow
+---
+
+<p>
+So, I've been having some good ideas for blog posts. So many that, rather than post about them, I'm writing a post about how I improved my workflow! So, what improvement have I made? I can now type <code>M-x blog-idea idea</code> and it will save the idea to a file. This is somewhat influenced by org-remember, however, it separates my blog ideas from the rest of the nonsense.
+</p>
+<p>
+First I created <code>blog/draft/blog-ideas.org</code> since I wanted to keep track of my files with org-mode. I separated my initial ideas by topic with the last topic being <code>misc</code>. Then I went about implementing some elisp for <code>M-x blog-idea</code> so that it prompted me for the idea and then appended it to the end of the ideas file.
+</p>
+
+
+<pre class="src src-elisp"><span class="linenr">1:  </span>(<span style="color: #729fcf; font-weight: bold;">defun</span> <span style="color: #edd400; font-weight: bold;">blog-idea</span> ()
+<span class="linenr">2:  </span>  (interactive)
+<span class="linenr">3:  </span>  (<span style="color: #729fcf; font-weight: bold;">let*</span> ((idea (read-from-minibuffer <span style="color: #ad7fa8; font-style: italic;">"Idea: "</span> nil))
+<span class="linenr">4:  </span>         (line (concat <span style="color: #ad7fa8; font-style: italic;">"- [ ] "</span> idea <span style="color: #ad7fa8; font-style: italic;">"\n"</span>)))
+<span class="linenr">5:  </span>    (<span style="color: #729fcf; font-weight: bold;">with-temp-buffer</span>
+<span class="linenr">6:  </span>      (insert line)
+<span class="linenr">7:  </span>      (append-to-file  (point-min) (point-max)
+<span class="linenr">8:  </span>                       <span style="color: #ad7fa8; font-style: italic;">"~/Dropbox/blog/draft/blog-ideas.org"</span>))))
+</pre>
+
+
+
+<p>
+Then, I made <code>M-x blog-ideas</code> a shortcut for opening <code>blog-ideas.org</code>, which is short and sweet:
+</p>
+
+
+<pre class="src src-elisp"><span class="linenr">1:  </span>(<span style="color: #729fcf; font-weight: bold;">defun</span> <span style="color: #edd400; font-weight: bold;">blog-ideas</span> ()
+<span class="linenr">2:  </span>  (interactive)
+<span class="linenr">3:  </span>  (find-file <span style="color: #ad7fa8; font-style: italic;">"~/Dropbox/blog/draft/blog-ideas.org"</span>))
+</pre>
+
+
+
+<p>
+This is why I love <b>EMACS</b>!
+</p>
