@@ -1,8 +1,9 @@
 
 * Robotics
+- [ ] River Rage
 
-* Blogging [0/1]
-- [ ] Setting up blog-ideas.org
+* Blogging [1/1]
+- [X] Setting up blog-ideas.org
 
 * Programming
 

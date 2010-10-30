@@ -1,0 +1,23 @@
+#+BEGIN_HTML
+---
+layout: post
+title: Pretty Lambdas!
+categories:
+- emacs
+- lisp
+- lambda
+---
+#+END_HTML
+
+A neat little trick I found a while ago allows emacs to transform =(lambda ...)= into =(\lambda ...)= which makes lisp code more concise and easier to read. (You can also use it for python and any other language). 
+#+BEGIN_SRC elisp -n -r :tangle emacs.el
+  (defun pretty-lambdas ()
+    (interactive)
+    (font-lock-add-keywords
+     nil `(("\\(lambda\\>\\)"
+            (0 (progn (compose-region (match-beginning 1) (match-end 1)
+                                      ,(make-char 'greek-iso8859-7 107))
+                      nil))))))
+#+END_SRC
+
+It is a bit of a mess, but when it's activated you type =lambda= normally and it auto transforms into =\lambda= for display, but saves as =lambda=. This allows you to use it in source code and run the code normally. To enable it, add it as a hook in .emacs or type =M-x pretty-lambdas= when the file is open.

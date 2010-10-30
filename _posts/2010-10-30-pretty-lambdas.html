@@ -1,0 +1,28 @@
+---
+layout: post
+title: Pretty Lambdas!
+categories:
+- emacs
+- lisp
+- lambda
+---
+
+<p>
+A neat little trick I found a while ago allows emacs to transform <code>(lambda ...)</code> into <code>(\lambda ...)</code> which makes lisp code more concise and easier to read. (You can also use it for python and any other language). 
+</p>
+
+
+<pre class="src src-elisp"><span class="linenr">1:  </span>(<span style="color: #729fcf; font-weight: bold;">defun</span> <span style="color: #edd400; font-weight: bold;">pretty-lambdas</span> ()
+<span class="linenr">2:  </span>  (interactive)
+<span class="linenr">3:  </span>  (font-lock-add-keywords
+<span class="linenr">4:  </span>   nil `((<span style="color: #ad7fa8; font-style: italic;">"</span><span style="color: #ad7fa8; font-weight: bold; font-style: italic;">\\</span><span style="color: #ad7fa8; font-weight: bold; font-style: italic;">(</span><span style="color: #ad7fa8; font-style: italic;">lambda\\&gt;</span><span style="color: #ad7fa8; font-weight: bold; font-style: italic;">\\</span><span style="color: #ad7fa8; font-weight: bold; font-style: italic;">)</span><span style="color: #ad7fa8; font-style: italic;">"</span>
+<span class="linenr">5:  </span>          (0 (<span style="color: #729fcf; font-weight: bold;">progn</span> (compose-region (match-beginning 1) (match-end 1)
+<span class="linenr">6:  </span>                                    ,(make-char 'greek-iso8859-7 107))
+<span class="linenr">7:  </span>                    nil))))))
+</pre>
+
+
+
+<p>
+It is a bit of a mess, but when it's activated you type <code>lambda</code> normally and it auto transforms into <code>\lambda</code> for display, but saves as <code>lambda</code>. This allows you to use it in source code and run the code normally. To enable it, add it as a hook in .emacs or type <code>M-x pretty-lambdas</code> when the file is open.
+</p>
