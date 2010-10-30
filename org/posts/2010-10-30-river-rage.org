@@ -1,0 +1,18 @@
+#+BEGIN_HTML
+---
+layout: post
+title: River Rage!
+categories:
+- robotics
+- river rage
+- FIRST
+---
+#+END_HTML
+
+Today I went to River Rage a post season FIRST Robotics competition with team 348. It was very enjoyable, we ended up as semifinalists, which wasn't quite what I hoped for. However, it was quite good.
+
+They mixed some things up, for alliance selection, alliances 1-8 selected then 1-8 again as opposed to the annoying snake selection thing FIRST normally does. Also, Alliances couldn't choose other teams in the top 8 which prevented the two best teams from getting together and dominating.
+
+When it actually came to running the elimination matches, they had some ridiculous bracket. It made absolutely no sense to me. It might have if I had seen it on paper. It was annoyingly confusion. Enough complaining though.
+
+It was a very fun day, and every one on our team got to go up!

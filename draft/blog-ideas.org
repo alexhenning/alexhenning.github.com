@@ -7,8 +7,8 @@
 
 * Programming
 
-** Emacs [0/1]
-- [ ] Pretty lamdas
+** Emacs [1/1]
+- [X] Pretty lamdas
 
 * Misc [1/2]
 - [X] MIT application
