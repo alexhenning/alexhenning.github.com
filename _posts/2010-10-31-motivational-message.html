@@ -1,0 +1,67 @@
+---
+layout: post
+title: Getting a Motivational Message on Emacs Startup
+categories:
+- emacs
+- customizations
+---
+
+<p>
+When I was learning <code>LISP</code>, I used slime in emacs. One of the neat little features I liked was the motivational message it showed on startup. It wasn't really that important, but it was one of those little features that when you notice, brightens your day a little. I use emacs so much, I decided why not add a feature for emacs. (This was a few months ago, when I wanted to learn dome elisp for the first time.)
+</p>
+<p>
+So first, I created a file <code>~/Dropbox/wisdom.txt</code> and on each line, I put a quote or a motivational message. Put whatever you want to see on startup in it.
+</p>
+<p>
+Next we need to read each of the lines into a list, so I use a simple python style <code>read-lines</code>.
+</p>
+
+
+<pre class="src src-elisp"><span class="linenr">1:  </span>(<span style="color: #729fcf; font-weight: bold;">defun</span> <span style="color: #edd400; font-weight: bold;">read-lines</span> (file)
+<span class="linenr">2:  </span>  <span style="color: #888a85;">"Return a list of lines in FILE."</span>
+<span class="linenr">3:  </span>  (<span style="color: #729fcf; font-weight: bold;">with-temp-buffer</span>
+<span class="linenr">4:  </span>    (insert-file-contents file)
+<span class="linenr">5:  </span>    (split-string
+<span class="linenr">6:  </span>     (buffer-string) <span style="color: #ad7fa8; font-style: italic;">"\n"</span> t)))
+</pre>
+
+
+
+<p>
+Then I load <code>wisdom.txt</code> into a variable named wisdom. I remove any line starting with =";;"= so that I can comment out lines if I wish to.
+</p>
+
+
+<pre class="src src-elisp"><span class="linenr">1:  </span>(setq wisdom (remove-if (<span style="color: #729fcf; font-weight: bold;">lambda</span> (s) (string= (substring s 0 2) <span style="color: #ad7fa8; font-style: italic;">";;"</span>))
+<span class="linenr">2:  </span>                        (read-lines <span style="color: #ad7fa8; font-style: italic;">"~/Dropbox/wisdom.txt"</span>)))
+</pre>
+
+
+
+<p>
+Next, I choose a random element from the list <code>wisdom</code> and show it in the minibuffer.
+</p>
+
+
+<pre class="src src-elisp"><span class="linenr">1:  </span>(<span style="color: #729fcf; font-weight: bold;">defun</span> <span style="color: #edd400; font-weight: bold;">motivational-message</span> (<span style="color: #8ae234; font-weight: bold;">&amp;rest</span> rest)
+<span class="linenr">2:  </span>  (interactive)
+<span class="linenr">3:  </span>  (message (elt wisdom (random (length wisdom)))))
+</pre>
+
+
+
+<p>
+Then, I just override it so that it shows at startup. This intentionally goes strait to <code>*scratch*</code>, I use emacs so much that I prefer to go straight scratch.
+</p>
+
+
+<pre class="src src-elisp"><span class="linenr">1:  </span>(<span style="color: #729fcf; font-weight: bold;">defun</span> <span style="color: #edd400; font-weight: bold;">display-startup-echo-area-message</span> ()
+<span class="linenr">2:  </span>  <span style="color: #888a85;">"If it wasn't for this you'd be GNU/Spammed by now"</span>
+<span class="linenr">3:  </span>  (motivational-message))
+</pre>
+
+
+
+<p>
+<b>What do you think?</b> Not too painful.
+</p>

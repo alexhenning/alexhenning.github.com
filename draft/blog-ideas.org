@@ -1,6 +1,6 @@
 
 * Robotics
-- [ ] River Rage
+- [X] River Rage
 
 * Blogging [1/1]
 - [X] Setting up blog-ideas.org
@@ -10,6 +10,6 @@
 ** Emacs [1/1]
 - [X] Pretty lamdas
 
-* Misc [1/2]
+* Misc [2/2]
 - [X] MIT application
-- [ ] motivational message / wisdom
+- [X] motivational message / wisdom

@@ -1,0 +1,45 @@
+#+BEGIN_HTML
+---
+layout: post
+title: Getting a Motivational Message on Emacs Startup
+categories:
+- emacs
+- customizations
+---
+#+END_HTML
+
+When I was learning =LISP=, I used slime in emacs. One of the neat little features I liked was the motivational message it showed on startup. It wasn't really that important, but it was one of those little features that when you notice, brightens your day a little. I use emacs so much, I decided why not add a feature for emacs. (This was a few months ago, when I wanted to learn dome elisp for the first time.)
+
+So first, I created a file =~/Dropbox/wisdom.txt= and on each line, I put a quote or a motivational message. Put whatever you want to see on startup in it.
+
+Next we need to read each of the lines into a list, so I use a simple python style =read-lines=.
+#+BEGIN_SRC elisp -n -r
+  (defun read-lines (file)
+    "Return a list of lines in FILE."
+    (with-temp-buffer
+      (insert-file-contents file)
+      (split-string
+       (buffer-string) "\n" t)))
+#+END_SRC
+
+Then I load =wisdom.txt= into a variable named wisdom. I remove any line starting with =";;"= so that I can comment out lines if I wish to.
+#+BEGIN_SRC elisp -n -r
+  (setq wisdom (remove-if (lambda (s) (string= (substring s 0 2) ";;"))
+                          (read-lines "~/Dropbox/wisdom.txt")))
+#+END_SRC
+
+Next, I choose a random element from the list =wisdom= and show it in the minibuffer.
+#+BEGIN_SRC elisp -n -r :tangle emacs.el
+  (defun motivational-message (&rest rest)
+    (interactive)
+    (message (elt wisdom (random (length wisdom)))))
+#+END_SRC
+
+Then, I just override it so that it shows at startup. This intentionally goes strait to =*scratch*=, I use emacs so much that I prefer to go straight scratch.
+#+BEGIN_SRC elisp -n -r
+  (defun display-startup-echo-area-message ()
+    "If it wasn't for this you'd be GNU/Spammed by now"
+    (motivational-message))
+#+END_SRC
+
+*What do you think?* Not too painful.
