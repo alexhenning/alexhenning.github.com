@@ -1,0 +1,19 @@
+#+BEGIN_HTML
+---
+layout: post
+title: Literate programming
+categories:
+- literate programming
+- programming style
+- emacs
+---
+#+END_HTML
+
+When writing synonym.el, I tried doing it as a literate program. I haven't done a whole lot of literate programming yet, and I have a few issues with it.
+
+- I still see the the non-code as comments :: Whereas in literate programming, the non-code should be more of a narrative that tries to explain everything.
+- I don't write enough of the "narrative" :: And what I write feels much more like a repetition of the code than a complement of it.
+- I leave out doc-strings :: They feel like even more repetition on top of the narrative.
+- The narrative falls out of sync with the code :: This is the same problem that comments suffer, but it's even more confusing in a literate program.
+
+The only two things I really like are the *code folding* and the ability to have all the code in one big file that the separates out into logical modules.
