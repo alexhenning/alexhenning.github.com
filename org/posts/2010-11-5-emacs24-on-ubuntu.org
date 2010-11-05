@@ -1,0 +1,47 @@
+#+BEGIN_HTML
+---
+layout: post
+title: Installing Emacs from Source on Ubuntu
+categories:
+- emacs
+- ubuntu
+---
+#+END_HTML
+
+*** Essential Libraries
+I decided to install emacs from source on Ubuntu. It turns out, installing emacs from source is relatively easy. First, make sure you install support for compiling code and info files.
+: sudo aptitude install texinfo build-essential
+Then, assuming you want to have support for images, there are quiet a few libraries necessary for png, gif, jpeg...
+: sudo aptitude install libdbus-1-dev libgconf2-dev libgif-dev libgpm-dev libgtk2.0-dev libjpeg62-dev libm17n-dev libncurses5-dev libotf-dev librsvg2-dev libtiff4-dev libXpm-dev
+This far, I have to thank [[http://h1de0ut.com/bl0g/article/2010/08/13/emacs-trunk-emacs24-on-ubuntu-10-10/]] for saving me from having to hunt down the names of all of the graphics libraries.
+
+*** Getting the Source
+Then, I cloned the source for the latest from [[http://savannah.gnu.org/git/?group=emacs][savannah.gnu.org]] and followed the build the instructions in =INSTALL=.
+#+BEGIN_SRC bash -n -r
+git clone git://git.savannah.gnu.org/emacs.git
+cd emacs
+./configure
+make
+src/emacs -q ;; This checks that it built properly
+sudo make install
+mv /usr/local/bin/emacs-24.0.50 /usr/local/bin/emacs24
+  ;; Change the number to whatever the version is, I moved it to a more convienent name
+emacs24 -q
+#+END_SRC
+You should now be able to run the latest version of emacs.
+
+*** Fixing the your .emacs
+If you leave out the =-q= option, you may notice errors when emacs tries to load your =.emacs=. First, if aby libraries you use =defun*= or any other functions for =cl=, make sure you load it.
+#+BEGIN_SRC elisp -n -r
+(require 'cl)
+#+END_SRC
+It won't load =emacs-goodies-el= or any other. The only reason for this, is that the newly built emacs doesn't know where Ubuntu keeps them. (hint: not where emacs expects them) The fix is easy, just add it and all of the directories in it to the =load-path=.
+#+BEGIN_SRC elisp -n -r
+(add-to-list 'load-path "/usr/share/emacs/site-lisp")
+  (mapcar '(lambda (dir)
+                    (add-to-list 'load-path (concat "/usr/share/emacs/site-lisp/" dir)))
+          (cddr (directory-files "/usr/share/emacs/site-lisp")))
+#+END_SRC
+
+*** Problems
+The only problem I currently having is =color-theme.el= which doesn't seem to be working properly. I'm still working on it... *Any other problems?*

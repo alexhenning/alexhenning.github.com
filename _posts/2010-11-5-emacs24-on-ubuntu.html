@@ -1,0 +1,92 @@
+---
+layout: post
+title: Installing Emacs from Source on Ubuntu
+categories:
+- emacs
+- ubuntu
+---
+
+
+<div id="outline-container-1" class="outline-4">
+<h4 id="sec-1">Essential Libraries </h4>
+<div class="outline-text-4" id="text-1">
+
+<p>I decided to install emacs from source on Ubuntu. It turns out, installing emacs from source is relatively easy. First, make sure you install support for compiling code and info files.
+</p><pre class="example">
+sudo aptitude install texinfo build-essential
+</pre>
+
+<p>Then, assuming you want to have support for images, there are quiet a few libraries necessary for png, gif, jpeg&hellip;
+</p><pre class="example">
+sudo aptitude install libdbus-1-dev libgconf2-dev libgif-dev libgpm-dev libgtk2.0-dev libjpeg62-dev libm17n-dev libncurses5-dev libotf-dev librsvg2-dev libtiff4-dev libXpm-dev
+</pre>
+
+<p>This far, I have to thank <a href="http://h1de0ut.com/bl0g/article/2010/08/13/emacs-trunk-emacs24-on-ubuntu-10-10/">http://h1de0ut.com/bl0g/article/2010/08/13/emacs-trunk-emacs24-on-ubuntu-10-10/</a> for saving me from having to hunt down the names of all of the graphics libraries.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-4">
+<h4 id="sec-2">Getting the Source </h4>
+<div class="outline-text-4" id="text-2">
+
+<p>Then, I cloned the source for the latest from <a href="http://savannah.gnu.org/git/?group=emacs">savannah.gnu.org</a> and followed the build the instructions in <code>INSTALL</code>.
+</p>
+
+
+<pre class="src src-bash"><span class="linenr">1:  </span>git clone git://git.savannah.gnu.org/emacs.git
+<span class="linenr">2:  </span>cd emacs
+<span class="linenr">3:  </span>./configure
+<span class="linenr">4:  </span>make
+<span class="linenr">5:  </span>src/emacs -q ;; This checks that it built properly
+<span class="linenr">6:  </span>sudo make install
+<span class="linenr">7:  </span>mv /usr/local/bin/emacs-24.0.50 /usr/local/bin/emacs24
+<span class="linenr">8:  </span>  ;; Change the number to whatever the version is, I moved it to a more convienent name
+<span class="linenr">9:  </span>emacs24 -q
+</pre>
+
+
+<p>
+You should now be able to run the latest version of emacs.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-4">
+<h4 id="sec-3">Fixing the your .emacs </h4>
+<div class="outline-text-4" id="text-3">
+
+<p>If you leave out the <code>-q</code> option, you may notice errors when emacs tries to load your <code>.emacs</code>. First, if aby libraries you use <code>defun*</code> or any other functions for <code>cl</code>, make sure you load it.
+</p>
+
+
+<pre class="src src-elisp"><span class="linenr">1:  </span>(<span style="color: #729fcf; font-weight: bold;">require</span> '<span style="color: #8ae234;">cl</span>)
+</pre>
+
+
+<p>
+It won't load <code>emacs-goodies-el</code> or any other. The only reason for this, is that the newly built emacs doesn't know where Ubuntu keeps them. (hint: not where emacs expects them) The fix is easy, just add it and all of the directories in it to the <code>load-path</code>.
+</p>
+
+
+<pre class="src src-elisp"><span class="linenr">1:  </span>(add-to-list 'load-path <span style="color: #ad7fa8; font-style: italic;">"/usr/share/emacs/site-lisp"</span>)
+<span class="linenr">2:  </span>  (mapcar '(<span style="color: #729fcf; font-weight: bold;">lambda</span> (dir)
+<span class="linenr">3:  </span>                    (add-to-list 'load-path (concat <span style="color: #ad7fa8; font-style: italic;">"/usr/share/emacs/site-lisp/"</span> dir)))
+<span class="linenr">4:  </span>          (cddr (directory-files <span style="color: #ad7fa8; font-style: italic;">"/usr/share/emacs/site-lisp"</span>)))
+</pre>
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-4">
+<h4 id="sec-4">Problems </h4>
+<div class="outline-text-4" id="text-4">
+
+<p>The only problem I currently having is <code>color-theme.el</code> which doesn't seem to be working properly. I'm still working on it&hellip; <b>Any other problems?</b>
+</p></div>
+</div>
