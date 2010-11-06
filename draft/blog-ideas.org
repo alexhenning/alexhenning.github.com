@@ -13,3 +13,7 @@
 * Misc [2/2]
 - [X] MIT application
 - [X] motivational message / wisdom
+- [ ] opinion of the elisp tutorial
+- [ ] Xmonad
+- [ ] find-tag
+- [ ] blog license / wtfpl

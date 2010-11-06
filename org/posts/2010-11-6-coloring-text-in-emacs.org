@@ -1,0 +1,31 @@
+#+BEGIN_HTML
+---
+layout: post
+title: Coloring Text in Emacs
+categories:
+- emacs
+- lisp
+- highlighting
+---
+#+END_HTML
+
+I was working on a dashboard for blogging in emacs as part of my current goal of learning =emacs lisp=, and I would a very annoying problem. I wanted to color certain lines, this isn't syntax highlighting, merely, coloring of key lines.
+
+At first I [[http://duckduckgo.com/][duckduckgo'd]] and duckduckgo'd, but all I could find was syntax highlighting of keywords and [[http://www.gnu.org/software/emacs/elisp/html_node/Changing-Properties.html#Changing-Properties][this page]]. I looked at =add-text-properties= and =propertize=. I was trying the property =face=, however, the property I wanted isn't =face=, but =font-lock-face=. *Why?* It has something to do with =font-lock-mode=... it was a good half of a day wasted. Anyways, I ended up with a nice little function for highlighting the current line:
+
+#+BEGIN_SRC elisp -n -r
+  (defun blog-set-line-face (face)
+    (add-text-properties
+     (line-beginning-position)
+     (line-end-position)
+     `(font-lock-face ,face)))
+#+END_SRC
+
+To go along with the color theme, you can use the color theme faces:
+ - font-lock-comment-face
+ - font-lock-function-name-face
+ - font-lock-warning-face
+ - font-lock-keyword-face
+ - font-lock-constant-face
+
+I'll probably throw the initial verion of =blog.el= on github in the next few days.

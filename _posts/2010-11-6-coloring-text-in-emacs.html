@@ -1,0 +1,50 @@
+---
+layout: post
+title: Coloring Text in Emacs
+categories:
+- emacs
+- lisp
+- highlighting
+---
+
+<p>
+I was working on a dashboard for blogging in emacs as part of my current goal of learning <code>emacs lisp</code>, and I would a very annoying problem. I wanted to color certain lines, this isn't syntax highlighting, merely, coloring of key lines.
+</p>
+<p>
+At first I <a href="http://duckduckgo.com/">duckduckgo'd</a> and duckduckgo'd, but all I could find was syntax highlighting of keywords and <a href="http://www.gnu.org/software/emacs/elisp/html_node/Changing-Properties.html#Changing-Properties">this page</a>. I looked at <code>add-text-properties</code> and <code>propertize</code>. I was trying the property <code>face</code>, however, the property I wanted isn't <code>face</code>, but <code>font-lock-face</code>. <b>Why?</b> It has something to do with <code>font-lock-mode</code>&hellip; it was a good half of a day wasted. Anyways, I ended up with a nice little function for highlighting the current line:
+</p>
+
+
+
+<pre class="src src-elisp"><span class="linenr">1:  </span>(<span style="color: #729fcf; font-weight: bold;">defun</span> <span style="color: #edd400; font-weight: bold;">blog-set-line-face</span> (face)
+<span class="linenr">2:  </span>  (add-text-properties
+<span class="linenr">3:  </span>   (line-beginning-position)
+<span class="linenr">4:  </span>   (line-end-position)
+<span class="linenr">5:  </span>   `(font-lock-face ,face)))
+</pre>
+
+
+
+<p>
+To go along with the color theme, you can use the color theme faces:
+</p><ul>
+<li>
+font-lock-comment-face
+</li>
+<li>
+font-lock-function-name-face
+</li>
+<li>
+font-lock-warning-face
+</li>
+<li>
+font-lock-keyword-face
+</li>
+<li>
+font-lock-constant-face
+
+</li>
+</ul>
+
+<p>I'll probably throw the initial verion of <code>blog.el</code> on github in the next few days.
+</p>
