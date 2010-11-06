@@ -21,3 +21,5 @@ A neat little trick I found a while ago allows emacs to transform =(lambda ...)=
 #+END_SRC
 
 It is a bit of a mess, but when it's activated you type =lambda= normally and it auto transforms into =\lambda= for display, but saves as =lambda=. This allows you to use it in source code and run the code normally. To enable it, add it as a hook in .emacs or type =M-x pretty-lambdas= when the file is open.
+
+*Edit:* I got this from [[http://www.emacswiki.org/emacs/PrettyLambda][emacswiki.org]], one of the problems with a large =.emacs= is sometimes it's hard to remember where you got everything...
