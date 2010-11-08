@@ -10,10 +10,10 @@
 ** Emacs [1/1]
 - [X] Pretty lamdas
 
-* Misc [2/2]
+* Misc [2/6]
 - [X] MIT application
 - [X] motivational message / wisdom
-- [ ] opinion of the elisp tutorial
+- [ ] Opinion of the Elisp Tutorial within Emacs
 - [ ] Xmonad
-- [ ] find-tag
-- [ ] blog license / wtfpl
+- [ ] Find-Tag
+- [ ] Blog License / WTFPL
