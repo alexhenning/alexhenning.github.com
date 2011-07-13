@@ -21,6 +21,7 @@ Then, I cloned the source for the latest from [[http://savannah.gnu.org/git/?gro
 git clone git://git.savannah.gnu.org/emacs.git
 cd emacs
 ./configure
+make bootstrap
 make
 src/emacs -q ;; This checks that it built properly
 sudo make install

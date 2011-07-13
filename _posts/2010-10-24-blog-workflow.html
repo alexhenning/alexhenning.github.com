@@ -25,7 +25,9 @@ I've been blogging for less than a week. So far, I have the workings of a simple
 <span class="linenr">3:  </span> blog-posts-directory (concat blog-directory <span style="color: #ad7fa8; font-style: italic;">"_posts/"</span>)
 <span class="linenr">4:  </span> blog-base-directory (concat blog-directory <span style="color: #ad7fa8; font-style: italic;">"org/posts/"</span>)
 <span class="linenr">5:  </span> blog-draft-directory (concat blog-directory <span style="color: #ad7fa8; font-style: italic;">"draft/"</span>))
+<span class="linenr">6:  </span>
 </pre>
+
 
 
 
@@ -44,19 +46,21 @@ I've been blogging for less than a week. So far, I have the workings of a simple
 <pre class="src src-elisp"><span class="linenr"> 1:  </span>(setq org-publish-project-alist
 <span class="linenr"> 2:  </span>      `(
 <span class="linenr"> 3:  </span>        (<span style="color: #ad7fa8; font-style: italic;">"blog"</span>
-<span class="linenr"> 4:  </span>         <span style="color: #888a85;">;; </span><span style="color: #888a85;">Path to your org files.
-<span class="linenr"> 5:  </span></span>         <span style="color: #729fcf;">:base-directory</span> ,blog-base-directory
+<span class="linenr"> 4:  </span>         <span style="color: #888a85;">;; </span><span style="color: #888a85;">Path to your org files.</span>
+<span class="linenr"> 5:  </span>         <span style="color: #729fcf;">:base-directory</span> ,blog-base-directory
 <span class="linenr"> 6:  </span>         <span style="color: #729fcf;">:base-extension</span> <span style="color: #ad7fa8; font-style: italic;">"org"</span>
 <span class="linenr"> 7:  </span>
-<span class="linenr"> 8:  </span>         <span style="color: #888a85;">;; </span><span style="color: #888a85;">Path to your Jekyll project.
-<span class="linenr"> 9:  </span></span>         <span style="color: #729fcf;">:publishing-directory</span> ,blog-posts-directory
+<span class="linenr"> 8:  </span>         <span style="color: #888a85;">;; </span><span style="color: #888a85;">Path to your Jekyll project.</span>
+<span class="linenr"> 9:  </span>         <span style="color: #729fcf;">:publishing-directory</span> ,blog-posts-directory
 <span class="linenr">10:  </span>         <span style="color: #729fcf;">:recursive</span> t
 <span class="linenr">11:  </span>         <span style="color: #729fcf;">:publishing-function</span> org-publish-org-to-html
 <span class="linenr">12:  </span>         <span style="color: #729fcf;">:headline-levels</span> 4 
 <span class="linenr">13:  </span>         <span style="color: #729fcf;">:html-extension</span> <span style="color: #ad7fa8; font-style: italic;">"html"</span>
-<span class="linenr">14:  </span>         <span style="color: #729fcf;">:body-only</span> t <span style="color: #888a85;">;; </span><span style="color: #888a85;">Only export section between &lt;body&gt; &lt;/body&gt;
-<span class="linenr">15:  </span></span>    )))
+<span class="linenr">14:  </span>         <span style="color: #729fcf;">:body-only</span> t <span style="color: #888a85;">;; </span><span style="color: #888a85;">Only export section between &lt;body&gt; &lt;/body&gt;</span>
+<span class="linenr">15:  </span>    )))
+<span class="linenr">16:  </span>
 </pre>
+
 
 
 
@@ -75,7 +79,9 @@ I've been blogging for less than a week. So far, I have the workings of a simple
 <pre class="src src-elisp"><span class="linenr">1:  </span>(<span style="color: #729fcf; font-weight: bold;">defun</span> <span style="color: #edd400; font-weight: bold;">blog-publish</span> ()
 <span class="linenr">2:  </span>  (interactive)
 <span class="linenr">3:  </span>  (org-publish-project <span style="color: #ad7fa8; font-style: italic;">"blog"</span>))
+<span class="linenr">4:  </span>
 </pre>
+
 
 
 
@@ -98,7 +104,9 @@ I've been blogging for less than a week. So far, I have the workings of a simple
 <span class="linenr">5:  </span>    (set-buffer buffer)
 <span class="linenr">6:  </span>    (set-visited-file-name (buffer-name buffer))
 <span class="linenr">7:  </span>    (switch-to-buffer buffer)))
+<span class="linenr">8:  </span>
 </pre>
+
 
 
 
@@ -129,7 +137,9 @@ I've been blogging for less than a week. So far, I have the workings of a simple
 <span class="linenr">13:  </span>                           filepath))
 <span class="linenr">14:  </span>    (set-visited-file-name (buffer-name (current-buffer)))
 <span class="linenr">15:  </span>    (blog-publish)))
+<span class="linenr">16:  </span>
 </pre>
+
 
 
 

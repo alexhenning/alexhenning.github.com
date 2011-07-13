@@ -1,3 +1,4 @@
+title: Blog Ideas File
 
 * Robotics
 - [X] River Rage
@@ -16,4 +17,9 @@
 - [ ] Opinion of the Elisp Tutorial within Emacs
 - [ ] Xmonad
 - [ ] Find-Tag
-- [ ] Blog License / WTFPL
+- [X] Blog License / WTFPL
+- [ ] Perlin Noise Basics
+- [ ] Perlin Noise for Simple Effects
+- [ ] Perlin Noise to Make a Simple Map
+- [ ] DuckDuckGo
+- [ ] Perlin Noise to Make Mountains

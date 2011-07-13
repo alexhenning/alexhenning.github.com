@@ -35,16 +35,19 @@ sudo aptitude install libdbus-1-dev libgconf2-dev libgif-dev libgpm-dev libgtk2.
 </p>
 
 
-<pre class="src src-bash"><span class="linenr">1:  </span>git clone git://git.savannah.gnu.org/emacs.git
-<span class="linenr">2:  </span>cd emacs
-<span class="linenr">3:  </span>./configure
-<span class="linenr">4:  </span>make
-<span class="linenr">5:  </span>src/emacs -q ;; This checks that it built properly
-<span class="linenr">6:  </span>sudo make install
-<span class="linenr">7:  </span>mv /usr/local/bin/emacs-24.0.50 /usr/local/bin/emacs24
-<span class="linenr">8:  </span>  ;; Change the number to whatever the version is, I moved it to a more convienent name
-<span class="linenr">9:  </span>emacs24 -q
+<pre class="src src-bash"><span class="linenr"> 1:  </span>git clone git://git.savannah.gnu.org/emacs.git
+<span class="linenr"> 2:  </span>cd emacs
+<span class="linenr"> 3:  </span>./configure
+<span class="linenr"> 4:  </span>make bootstrap
+<span class="linenr"> 5:  </span>make
+<span class="linenr"> 6:  </span>src/emacs -q ;; This checks that it built properly
+<span class="linenr"> 7:  </span>sudo make install
+<span class="linenr"> 8:  </span>mv /usr/local/bin/emacs-24.0.50 /usr/local/bin/emacs24
+<span class="linenr"> 9:  </span>  ;; Change the number to whatever the version is, I moved it to a more convienent name
+<span class="linenr">10:  </span>emacs24 -q
+<span class="linenr">11:  </span>
 </pre>
+
 
 
 <p>
@@ -63,7 +66,9 @@ You should now be able to run the latest version of emacs.
 
 
 <pre class="src src-elisp"><span class="linenr">1:  </span>(<span style="color: #729fcf; font-weight: bold;">require</span> '<span style="color: #8ae234;">cl</span>)
+<span class="linenr">2:  </span>
 </pre>
+
 
 
 <p>
@@ -75,7 +80,9 @@ It won't load <code>emacs-goodies-el</code> or any other. The only reason for th
 <span class="linenr">2:  </span>  (mapcar '(<span style="color: #729fcf; font-weight: bold;">lambda</span> (dir)
 <span class="linenr">3:  </span>                    (add-to-list 'load-path (concat <span style="color: #ad7fa8; font-style: italic;">"/usr/share/emacs/site-lisp/"</span> dir)))
 <span class="linenr">4:  </span>          (cddr (directory-files <span style="color: #ad7fa8; font-style: italic;">"/usr/share/emacs/site-lisp"</span>)))
+<span class="linenr">5:  </span>
 </pre>
+
 
 
 

@@ -19,8 +19,8 @@ html&gt;(head&gt;body&gt;title)+(div#main&gt;h1+div#content)+(div#sidebar&gt;ul&
 <pre class="src src-html"><span class="linenr"> 1:  </span>&lt;<span style="color: #edd400; font-weight: bold;">html</span>&gt;
 <span class="linenr"> 2:  </span>  &lt;<span style="color: #edd400; font-weight: bold;">head</span>&gt;
 <span class="linenr"> 3:  </span>    &lt;<span style="color: #edd400; font-weight: bold;">body</span>&gt;
-<span class="linenr"> 4:  </span>      &lt;<span style="color: #edd400; font-weight: bold;">title</span>&gt;<span style="font-weight: bold; text-decoration: underline;">
-<span class="linenr"> 5:  </span>      </span>&lt;/<span style="color: #edd400; font-weight: bold;">title</span>&gt;
+<span class="linenr"> 4:  </span>      &lt;<span style="color: #edd400; font-weight: bold;">title</span>&gt;
+<span class="linenr"> 5:  </span><span style="font-weight: bold; text-decoration: underline;">      </span>&lt;/<span style="color: #edd400; font-weight: bold;">title</span>&gt;
 <span class="linenr"> 6:  </span>    &lt;/<span style="color: #edd400; font-weight: bold;">body</span>&gt;
 <span class="linenr"> 7:  </span>  &lt;/<span style="color: #edd400; font-weight: bold;">head</span>&gt;
 <span class="linenr"> 8:  </span>  &lt;<span style="color: #edd400; font-weight: bold;">div</span> <span style="color: #ff6347;">id</span>=<span style="color: #ad7fa8; font-style: italic;">"main"</span>&gt;
@@ -43,7 +43,9 @@ html&gt;(head&gt;body&gt;title)+(div#main&gt;h1+div#content)+(div#sidebar&gt;ul&
 <span class="linenr">25:  </span>    &lt;/<span style="color: #edd400; font-weight: bold;">ul</span>&gt;
 <span class="linenr">26:  </span>  &lt;/<span style="color: #edd400; font-weight: bold;">div</span>&gt;
 <span class="linenr">27:  </span>&lt;/<span style="color: #edd400; font-weight: bold;">html</span>&gt;  
+<span class="linenr">28:  </span>
 </pre>
+
 
 
 
@@ -58,7 +60,9 @@ If you want to use it, get it from <a href="http://github.com/chrisdone/zencodin
 <pre class="src src-elisp"><span class="linenr">1:  </span>(add-to-list 'load-path <span style="color: #ad7fa8; font-style: italic;">"~/.emacs.d/zencoding/"</span>)
 <span class="linenr">2:  </span>(<span style="color: #729fcf; font-weight: bold;">require</span> '<span style="color: #8ae234;">zencoding-mode</span>)
 <span class="linenr">3:  </span>(add-hook 'sgml-mode-hook 'zencoding-mode)
+<span class="linenr">4:  </span>
 </pre>
+
 
 
 <p>
