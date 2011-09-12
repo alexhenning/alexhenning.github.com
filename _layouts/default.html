@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{{ page.title }}</title>
+    <title>{{ page.title }} | Alex Henning</title>
+    <base href="." />
     
    <meta name="author" content="Alex Henning" />
    <link href="http://alexhenning.github.com/atom.xml" rel="alternate" title="Alex Henning" type="application/atom+xml" />
@@ -16,8 +17,11 @@
   <div class="title">
     <a href="/">Alex Henning</a>
     <a class="extra" href="/">home</a>
+    <a class="extra" href="/about/">about</a>
+    <a class="extra" href="/projects/">projects</a>
+    <a class="extra" href="/blog/">blog</a>
   </div>
-  <h1 class=post-title>{{ page.title }}</h1>
+  <h1>{{ page.title }}</h1>
 
   {{ content }}
   

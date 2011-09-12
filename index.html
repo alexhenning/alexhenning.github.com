@@ -1,13 +1,33 @@
 ---
 layout: default
-title: My blog
+title: Welcome
 ---
 
-{% for post in site.posts limit:5 %}
-    <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-        {{ post.content }}
-    <em>Posted on {{ post.date | date_to_long_string }} in {% for topic in post.categories %}{{ topic }} {% endfor %} </em>
-    <br/><br/>
-{% endfor %}
+<p>I am a freshman at WPI double-majoring in <b>Computer Science</b>
+and <b>Robotics Engineering</b> in addition do freelancing
+work. <a href="/about/">Learn more about me.</a> 
+
+<h2><a href="/projects/">Some projects:</a></h2>
+<ul class="posts">
+    <li><span>Jul 2011</span> &raquo;
+      <a href="/projects/top-mrx-links.html">
+	Top #MRX Links
+    </a></li>
+    <li><span>Jan 2011</span> &raquo;
+      <a href="/projects/logomotion-score-calculator.html">
+	Logomotion Score Calculator
+    </a></li>
+    <li><span>Dec 2008</span> &raquo;
+      <a href="/projects/lj-sentiment-analysis.html">
+	Naive Bayesian Sentiment Analysis of LiveJournal
+    </a></li>
+</ul>
+
+<h2><a href="/blog/">Recent Posts:</a></h2>
+<ul class="posts">
+  {% for post in site.posts limit:5 %}
+    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+  {% endfor %}
+</ul>
 
 

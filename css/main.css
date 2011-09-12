@@ -5,16 +5,6 @@
 /*****************************************************************************/
 
 /* Global Reset */
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-html, body {
-  height: 100%;
-}
-
 body {
   background-color: white;
   font: 14px helvetica, arial, clean, sans-serif;
@@ -22,8 +12,19 @@ body {
   text-align: center;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-size: 100%;
+h1 {font-size: 1.5em;}
+h2 {font-size: 1.4em;}
+h3 {font-size: 1.3em;}
+h4 {font-size: 1.2em;}
+h5 {font-size: 1.1em;}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,
+   h1 a:visited, h2 a:visited, h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited {
+  color: #aaa;
+}
+
+h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
+  color: black;
 }
 
 h1 {
@@ -34,17 +35,14 @@ p {
   margin: 1em 0;
 }
 
-a {
+a, a:visited {
   color: #00a;
 }
 
-a:hover {
+a:hover, a:hover:visited {
   color: black;
 }
 
-a:visited {
-  color: #a0a;
-}
 
 table {
   font-size: inherit;
@@ -62,10 +60,6 @@ table {
   margin: 3em auto 2em auto;
   line-height: 1.5em;
 }
-
-.post-title {
-   font-size: 120%;
-  }
 
 .title {
   font-size: 125%;
@@ -103,4 +97,30 @@ table {
     border-top: 4px solid #eee;
     margin-top: 2em;
     overflow: hidden;
+  }
+
+ul.posts {
+  list-style-type: none;
+  margin-bottom: 2em;
+}
+
+  ul.posts li {
+    line-height: 1.75em;
+  }
+
+  ul.posts span, .date {
+    color: #aaa;
+    font-family: Monaco, "Courier New", monospace;
+    font-size: 80%;
+  }
+
+div.project {
+   min-height: 180px;
+   margin-bottom: 20px;
+}
+
+  div.project img {
+     height: 180px;
+     float: right;
+     margin-left: 20px;
   }

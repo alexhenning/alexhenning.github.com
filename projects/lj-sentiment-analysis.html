@@ -1,0 +1,101 @@
+---
+layout: default
+title: Naive Bayesian Sentiment Analysis of Live Journal
+---
+
+<image src="/images/projects/sentiment-smiley.png"
+       style="float: left; margin-right: 20px;"/>
+
+<p>For my science fair project as a sophomore in high school,
+I trained multiple naive bayes on approximately 3.5 million livejounal
+posts tagged with the top 100 emotions. Once the models were trained,
+they tried to guess the emotion of 10000 other posts they were not
+trained on.</p>
+
+<p><b>Hypothesis:</b> Different methods of tokenizing will change
+the accuracy of the bayes guesses.</p>
+
+<p>Methods of tokenizing the posts, tested with two different scales,
+one with the top 100 moods, another being a positive-neutral-negative
+scale.</p>
+<ul>
+  <li>Case insensitive, counting repeated uses of the same word.</li>
+  <li>Case sensitive, counting repeated uses of the same word.</li>
+  <li>Case insensitive, not counting repeated uses of the same word.</li>
+  <li>Case sensitive, not counting repeated uses of the same word.</li>
+</ul>
+
+<h2>Results<h2
+<h3>Case sensitivity</h3>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"> 
+<caption>Data: (Numbers represent percent right out of 10000)</caption> 
+<colgroup><col align="left" /><col align="right" /><col align="right" /><col align="right" /><col align="right" /> 
+</colgroup> 
+<thead> 
+<tr><th scope="col"></th><th scope="col">1 Guess</th><th scope="col">3 Guesses</th><th scope="col">5 Guesses</th><th scope="col">10 Guesses</th></tr> 
+</thead> 
+<tbody> 
+<tr><td>Bayes ignore-case count-repeats positive-scale</td><td>0.55</td><td>1</td><td>0</td><td>0</td></tr> 
+<tr><td>Bayes case-sensitive count-repeats positive-scale</td><td><b>0.56</b></td><td>1</td><td>0</td><td>0</td></tr> 
+</tbody> 
+<tbody> 
+<tr><td>Bayes ignore-case ignore-repeats positive-scale</td><td>0.57</td><td>1</td><td>0</td><td>0</td></tr> 
+<tr><td>Bayes case-sensitive ignore-repeats positive-scale</td><td><b>0.58</b></td><td>1</td><td>0</td><td>0</td></tr> 
+</tbody> 
+<tbody> 
+<tr><td>Bayes ignore-case count-repeats mood-scale</td><td>0.06</td><td>0.14</td><td>0.20</td><td>0.33</td></tr> 
+<tr><td>Bayes case-sensitive count-repeats mood-scale</td><td>0.06</td><td>0.14</td><td>0.20</td><td>0.33</td></tr> 
+</tbody> 
+<tbody> 
+<tr><td>Bayes ignore-case ignore-repeats mood-scale</td><td>0.07</td><td>0.15</td><td>0.22</td><td>0.34</td></tr> 
+<tr><td>Bayes case-sensitive ignore-repeats mood-scale</td><td>0.07</td><td>0.15</td><td>0.21</td><td>0.34</td></tr> 
+</tbody> 
+</table> 
+ 
+<p>Case sensitivity offers <b>no</b> advantage for guessing the
+sentiment out of a hundred distinct moods. However, on the
+positive-neutral-negative scale, case sensitivity provides
+a <i>slight</i> increase in it's accuracy of guessing moods. However,
+given that it's <i>only</i> 1% it may not be worth it given the
+significant increase in RAM and which resulted in paging and a
+significant slow down. That depends on use case though.
+</p> 
+
+
+<h3>Ignoring multiple repeats of the same word in the same post</h3> 
+ 
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"> 
+<caption>Data: (Numbers represent percent right out of 10000)</caption> 
+<colgroup><col align="left" /><col align="left" /><col align="right" /><col align="right" /><col align="right" /> 
+</colgroup> 
+<thead> 
+<tr><th scope="col"></th><th scope="col">1 Guess</th><th scope="col">3 Guesses</th><th scope="col">5 Guesses</th><th scope="col">10 Guesses</th></tr> 
+</thead> 
+<tbody> 
+<tr><td>Bayes ignore-case count-repeats positive-scale</td><td>0.55</td><td>1</td><td>0</td><td>0</td></tr> 
+<tr><td>Bayes ignore-case ignore-repeats positive-scale</td><td><b>0.57</b></td><td>1</td><td>0</td><td>0</td></tr> 
+</tbody> 
+<tbody> 
+<tr><td>Bayes case-sensitive count-repeats positive-scale</td><td>0.56</td><td>1</td><td>0</td><td>0</td></tr> 
+<tr><td>Bayes case-sensitive ignore-repeats positive-scale</td><td><b>0.58</b></td><td>1</td><td>0</td><td>0</td></tr> 
+</tbody> 
+<tbody> 
+<tr><td>Bayes ignore-case count-repeats mood-scale</td><td>0.06</td><td>0.14</td><td>0.20</td><td>0.33</td></tr> 
+<tr><td>Bayes ignore-case ignore-repeats mood-scale</td><td><b>0.07</b></td><td><b>0.15</b></td><td><b>0.22</b></td><td><b>0.34</b></td></tr> 
+</tbody> 
+<tbody> 
+<tr><td>Bayes case-sensitive count-repeats mood-scale</td><td>0.06</td><td>0.14</td><td>0.20</td><td>0.33</td></tr> 
+<tr><td>Bayes case-sensitive ignore-repeats mood-scale</td><td><b>0.07</b></td><td><b>0.15</b></td><td><b>0.21</b></td><td><b>0.34</b></td></tr> 
+</tbody> 
+</table> 
+ 
+<p> <b>Always</b> ignore repeats. The presence of a word more than
+once adds no gain in accuracy of the naive bayeses ability to guess
+the sentiment of the poster and actually reduce it.
+</p> 
+
+
+<h3>Other Results</h3>
+
+<p>The reduced positive-neutral-negative scale was significantly more
+accurate, but provides less information than the mood scale. </p>
